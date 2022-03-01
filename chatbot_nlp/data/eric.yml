@@ -1,0 +1,114 @@
+categories:
+  - Ericsson Query
+  - FAQ
+conversations:
+  - - ""
+    - Sorry, can't understand you
+  - - ""
+    - Please give me more info
+  - - ""
+    - Not sure I understand
+  - - ""
+    - Did you just say anything?
+  - - Hi there
+    - Hello How can I help?
+  - - How are you?
+    - I am fine,How about you?
+  - - Is anyone there?
+    - Yes,Here I am.How can I be of help to you?
+  - - Hey
+    - Hello,Thanks for visiting,How can I help you?
+  - - Thanks
+    - Please don't mention it
+  - - You are great!
+    - Thanks,Call me whenever you need my assistance
+  - - Awesome,Thanks
+    - Nah,Happy to Help!
+  - - Thank you
+    - You're Welcome!
+  - - What is your name?
+    - My friends call me Eric
+  - - What is your name?
+    - I am the Ericsson Bot
+  - - Who are You?
+    - I am your assistant.You can call me anytime
+  - - What do you do
+    - I can tell you about navigating through the usecase site
+  - - What do you know
+    - I know how to Help you navigate through the website:)
+  - - What is your purpose?
+    - My purpose is to help you navigate through the whole website
+  - - How can you help?
+    - I can help you make the most out of this website:)
+  - - What do you know
+    - I know to help people.
+  - - Why this portal?
+    - This portal is for submitting usecases and painpoints related to data in the repository
+  - - Tell me about the portal
+    - This portal is for submitting usecases and painpoints related to data in the repository
+  - - What can I do in this portal?
+    - You can submit your usecases and painpoints in this portal
+  - - Who can access this portal?
+    - If you are an Ericsson's Employee,then you can definitely access this portal
+  - - Can I access the portal?
+    - Ofcourse,you can access this portal
+  - - Can people outside of Ericsson access this portal?
+    - Unfortunately no,curently,this is only for Ericsson's employees
+  - - Where will my submitted usecases go?
+    - Your submitted usecases will go to the data enablement office
+  - - After submission of the usecase where will it go?
+    - Thanks for the question.They will go to the data enablement office
+  - - I have a few queries where should I go
+    - You can contact PDLCSSONDA@pdl.internal.ericsson.com for finding answers to specific queries
+  - - who will resolve my queries
+    - For further queries contact PDLCSSONDA@pdl.internal.ericsson.com
+  - - Who will approve my usecase
+    - Our highly skilled Data Strategy Driver assesses the data in terms of the usecase’s feasibility,the impact it creates and finally approves the usecase provided by a stakeholder.
+  - - I have submitted my usecase is there someone who approves it?
+    - Our highly skilled Data Strategy Driver assesses the data in terms of the usecase’s feasibility,the impact it creates and finally approves the usecase provided by a stakeholder.
+  - - When will my usecase be approved?
+    - Your usecase will be approved as soon as it is verified by our coordinator team for the required mandatory fields.
+  - - When will the usecases be approved?
+    - The usecases will be approved as soon as it's been verified by the coordinator team
+  - - If my usecase has been successfully created or approved,is it confirmed that my usecase is selected"
+    - Unfortunately No,It takes up a lot of time for us to process the usecases provided by you and also find its feasibility.
+  - - "I have created my usecase will it be selected"
+    - "Please wait for a while.We will get back to you,if your usecase was selected"
+  - - Who will approve my painpoint?
+    - The Domain team/Enablers will choose the most relevant painpoints
+  - - I have submitted my painpoint is there someone who approves it
+    - Our domain team will approve you painpoints after assessing its correctness and feasibility
+  - - What does the stage in progress mean?
+    - In progress means that the painpoint has been selected and work has been going on to resolve it
+  - - The current status of my painpoint is in progress what does that mean
+    - It means that the painpoint has been selected and work is on progress to resolve it.
+  - - My painpoint is in progress what do you mean by that
+    - The painpoint submitted by you will be resolved very soon
+  - - waiting for implementation mean?
+    - This means that the Domain team/Enablers are awaiting for a system/product to get implemented for resolving the required functionality pointed out in the pain point.
+  - - what do you mean by waiting for implementation stage?
+    - This means that the Domain team/Enablers are awaiting for a system/product to get implemented for resolving the required functionality pointed out in the pain point.
+  - - What do you mean by done in the status?
+    - Done means that the painpoint has been resolved and it satisfies the expectations of the stakeholder who proposed the painpoint
+  - - What is a usecase?
+    - A usecase addresses a business need with a specific purpose and a clear impact
+  - - what is a business usecase?
+    - A business usecase defines a sequence of actions that a business performs in order to produce observable results for an actor in that business
+  - - What is a data usecase?
+    - A data usecase addresses a business need by leveraging the importance of data and analytics to answer tangible business questions with a clear impact.
+  - - Should I periodically update my usecase?
+    - Yes,absolutely
+  - - How often should I update my usecase?
+    - You should try updating it whenever there has to be an update.There's no specific frequency.
+  - - Is there a minimum number of painpoints to be used?
+    - Yes,you must have atleast 1 painpoint for your usecase
+  - - Can I have usecases without painpoints?
+    - No,atleast providing 1 painpoint is necessary
+  - - What is the timeline for data usecase assessment?
+    - 3 weeks for E2E usecase evaluation
+  - - Who funds the data usecase implementation?
+    - MA/BA/GF funds the usecase implementation. Data Domains are responsible for designing a solution. Implementation of the solution has to carried out by the usecase themselves
+  - - What is the timeline for data usecase implementation?
+    - 3 weeks for E2E usecase evaluation
+  - - What is a painpoint?
+    - A painpoint addresses technical problem with a specific issue and clear deliverables.
