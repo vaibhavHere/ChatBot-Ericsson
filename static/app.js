@@ -7,11 +7,52 @@ const scrollable = document.querySelector('.scrollable'),
     [dots, closeBtn] = document.querySelectorAll(".options"),
     colors = document.querySelector(".colors"),
     colorBtns = document.querySelectorAll(".colors i"),
-    sendBtn = document.querySelector(".send-btn")
+    sendBtn = document.querySelector(".send-btn"),
+    mike=document.querySelector(".mike-btn"),
+    mikeWave=document.querySelector(".mike-wave");
+    
 var bubblestate = false,
-    colorOpen = false;
+    colorOpen = false,
+    speech = true;
+    recogStart=false;
+
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
 
 // EVENT LISTENERS
+recognition.addEventListener('result', e => {
+const transcript = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
+console.log(transcript);
+userTxt.value=transcript;
+OnTyping();
+userTxt.focus();
+});
+
+userTxt.addEventListener("focus",()=>{
+userTxt.scrollLeft = userTxt.scrollWidth;
+})
+
+recognition.addEventListener('end',()=>{
+    console.log("Stopped..");
+    mikeWave.classList.remove("mike-active");
+    recogStart=false;
+});
+
+mike.addEventListener("click",()=>{
+    mikeWave.classList.add("mike-active");
+    console.log("Listening...");
+    if(!recogStart)
+    {
+        recognition.start();
+        recogStart=true;
+    }
+    else{
+        recogStart=false;
+        recognition.abort();
+    }
+});
+
 colorBtns.forEach((i) => {
     i.onclick = () => {
         botIcon.style["filter"] = "hue-rotate(" + i.getAttribute("hue-val") + "deg)"
@@ -29,6 +70,7 @@ colorBtns.forEach((i) => {
 })
 
 botImg.onclick = closeBtn.onclick = () => {
+    recognition.abort();
     botIcon.classList.toggle("expand")
     colors.classList.add("shrink")
     colors.classList.remove("overflowoverride")
@@ -46,7 +88,6 @@ dots.onclick = () => {
         colors.classList.toggle("overflowoverride")
         colorOpen = false
     }
-
 }
 
 goBtn.addEventListener("click", () => {
@@ -59,7 +100,9 @@ goBtn.addEventListener("click", () => {
     }, 1500);
 })
 
-userTxt.addEventListener("input", (e) => {
+userTxt.addEventListener("input",OnTyping);
+
+function OnTyping(e){
     if (!bubblestate) {
         scrollable.insertAdjacentHTML('beforeend', `<div class="question-wrap">
         <div class="question load animate__animated animate__fadeInUp animate__fast">
@@ -67,7 +110,7 @@ userTxt.addEventListener("input", (e) => {
             <span></span>
             <span></span>
             </div>
-    </div>`)
+    </div>`);
         bubblestate = true;
     }
     if (userTxt.value == "") {
@@ -81,23 +124,23 @@ userTxt.addEventListener("input", (e) => {
         }, 600);
         bubblestate = false;
     }
-    scrollToEnd(scrollable, 80)
+    scrollToEnd(scrollable, 80);
+}
 
-})
 userTxt.addEventListener('keydown', function (event) {
     const key = event.key;
-    if (key == "Enter" && userTxt.value!="") {
-        console.log(key == "Enter")
-        x = [...document.querySelectorAll(".question.load")].pop()
-        x.parentNode.remove()
-        x.remove()
-        sendBtn.click()
-        scrollToEnd(scrollable)
-        bubblestate = false;
+    if (key == "Enter" && userTxt.value!=""){
+        OnSend();
     }
 });
-sendBtn.addEventListener("click", () => {
+
+function OnSend(){
+    recognition.abort();
+
     if (userTxt.value != ""){
+        x = [...document.querySelectorAll(".question.load")].pop()
+        x.parentNode.remove()
+        x.remove();
         fetch('/chatbot', {
             method: 'POST',
             headers: {
@@ -107,63 +150,48 @@ sendBtn.addEventListener("click", () => {
             body: JSON.stringify({
                 "query": userTxt.value
             })
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then(res => {
             if(res["response"]=="SERVER ERROR"){
                 setTimeout(() => {
                     x = document.querySelector(".response.load")
                     x.classList.add("animate__fadeOutDown")
-                    console.log(x)
                     x.parentNode.remove()
-                    scrollable.insertAdjacentHTML('beforeend', `
-        <div class="response-wrap">
-        <div class="response error animate__animated animate__fadeInUp animate__faster">
-            ${res["response"]}<p class="time">${h}:${m}</p>
-        </div>
-    </div>`)
+                    scrollable.insertAdjacentHTML('beforeend', `<div class="response-wrap"><div class="response error animate__animated animate__fadeInUp animate__faster">${res["response"]}<p class="time">${h}:${m}</p></div></div>`)
                 scrollToEnd(scrollable)
                 }, 600);
             }
             else{
                 x = document.querySelector(".response.load")
                 x.classList.add("animate__fadeOutDown")
-                console.log(x)
                 x.parentNode.remove()
-                scrollable.insertAdjacentHTML('beforeend', `
-        <div class="response-wrap">
+                scrollable.insertAdjacentHTML('beforeend', `<div class="response-wrap">
         <div class="response animate__animated animate__fadeInUp animate__faster">
-            ${res["response"]}<p class="time">${h}:${m}</p>
-        </div>
-    </div>`)
+            ${res["response"]}<p class="time">${h}:${m}</p></div></div>`)
                 scrollToEnd(scrollable)
             }
         });
-    console.log("Fired")
     var x = new Date()
     m = x.getMinutes();
     h = x.getHours();
-    console.log(h, m)
     h = h < 10 ? "0" + h : h;
     m = m < 10 ? "0" + m : m;
     setTimeout(() => {
-        scrollable.insertAdjacentHTML('beforeend', `<div class="response-wrap">
-  <div class="response load animate__animated animate__fadeInUp animate__fast">
-      <span></span>
-      <span></span>
-      <span></span>
-      </div>
-</div>`)
+        scrollable.insertAdjacentHTML('beforeend', `<div class="response-wrap"><div class="response load animate__animated animate__fadeInUp animate__fast"><span></span><span></span><span></span></div></div>`)
         scrollToEnd(scrollable)
     }, 600);
-    scrollable.insertAdjacentHTML('beforeend', `
-    <div class="question-wrap">
+    scrollable.insertAdjacentHTML('beforeend', `<div class="question-wrap">
     <div class="question animate__animated animate__fadeInUp animate__faster">
-        ${userTxt.value}<p class="time">${h}:${m}</p>
-    </div>
-</div>`)
-    userTxt.value = ""
+        ${userTxt.value}<p class="time">${h}:${m}</p></div></div>`)
+    userTxt.value = "";
+    scrollToEnd(scrollable)
+    bubblestate = false;
 }
-})
+}
+
+sendBtn.addEventListener("click",OnSend);
+
 
 function scrollToEnd(x, y = 0) {
     x.scrollTo(0, x.scrollHeight - y)

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <title>Ericsson Chatbot</title>
+    <script src="https://kit.fontawesome.com/94c5de059d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<!-- Preloading images for faster discovery and render -->
+<img hideimage src="{{url_for('static', filename='assets/logo.png')}}">
+<img hideimage src="{{ url_for('static', filename='assets/bot.png')}}">
+
+    <div class="pop animate__animated animate__fadeInUp animate__fast bot-button">
+        <img class="logo btn" src="{{url_for('static', filename='assets/logo.png')}}">
+        <div class="window hide">
+            <div class="topbar">
+                <img class="logo" src="{{ url_for('static', filename='assets/logo.png') }}">
+                <h1 class="hide bot-name">
+                    ChatBot
+                </h1>
+            </div>
+            <div class="middle">
+                <img class="bot-full-image" src="{{ url_for('static', filename='assets/bot.png') }}">
+                <div class="text">
+                    <h1>Having Trouble?</h1>
+                    <p>
+                        We have got you covered. Chat with us anytime 24x7!
+                    </p>
+                </div>
+                <button class="go-btn">Lets's Go..</button>
+            </div>
+        </div>
+        <div class="window window2 hide">
+            <div class="topbar topbar2">
+                <img class="logo" src="{{ url_for('static', filename='assets/logo.png') }}">
+                <h1 class="hide bot-name">
+                    ChatBot
+                </h1>
+            </div>
+            <div class="middle middle2">
+                <div class="chat-topbar">
+                    <div class="options">
+                        <i class="dots fa fa-ellipsis-vertical"></i>
+                    </div>
+                    <div class="colors shrink">
+                        <i hue-val=0 class="active fa-solid fa-circle"></i>
+                        <i hue-val=50 class="fa-solid fa-circle"></i>
+                        <i hue-val=100 class="fa-solid fa-circle"></i>
+                        <i hue-val=280 class="fa-solid fa-circle"></i>
+                        <i hue-val=140 class="fa-solid fa-circle"></i>
+                    </div>
+                    <h1 class="hide">
+                        ChatBot
+                    </h1>
+                    <div class="options">
+                        <i class="exit fa fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="scrollable">
+                </div>
+                <div class="textbox">
+                    <div class="mike-btn">
+                        <i class="fa-solid fa-microphone mike"></i>
+                        <div class="mike-wave"></div>
+                    </div>
+                    <input type="text" class="user-text" placeholder="Type your text..." onfocus="document.querySelector(`.textbox`).classList.add(`grey-border`)" 
+                    onblur="document.querySelector(`.textbox`).classList.remove(`grey-border`)">
+                    <button class="send-btn">Send<i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='app.js')}}"></script>
+</body>
+
+</html>
