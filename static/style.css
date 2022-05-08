@@ -152,7 +152,7 @@ display: none;
 }
 
 .bot-button {
-    will-change: width,height;
+    /* will-change: width,height; */
     background: linear-gradient(#0066FF, #569aff);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
